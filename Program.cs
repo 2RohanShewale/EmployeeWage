@@ -1,25 +1,29 @@
 ﻿using static System.Console;
 class Program
 {
+    public const int IS_FULL_TIME = 2;
+    public const int IS_PART_TIME = 1; 
+    public const int EMP_RATE_PER_HOUR = 20;
+    public const int NUM_OF_WORKING_DAYS = 20;
     static void Main(string[] args)
     {
-        //Constants
-        const int IS_FULL_TIME = 2;
-        const int IS_PART_TIME = 1;        const int EMP_RATE_PER_HOUR = 20;
-
-        //variables
-        Random random = new Random();
         int empHrs = 0;
-        int empWage = 0;
+        int empWage = 0; int totalEmpWage = 0;
         //Computation
-        int empCheck = random.Next(3);
-        switch (empCheck)
+        for (int day = 0; day <= NUM_OF_WORKING_DAYS; day++)
         {
-            case IS_FULL_TIME: empHrs = 8; break;
-            case IS_PART_TIME: empHrs|= 4; break;
-            default:empHrs = 0; break;
+            Random random = new Random();
+            int empCheck = random.Next(3);
+            switch (empCheck)
+            {
+                case IS_FULL_TIME: empHrs = 8; break;
+                case IS_PART_TIME: empHrs = 4; break;
+                default: empHrs = 0; break;
+            }
+            empWage = empHrs * EMP_RATE_PER_HOUR;
+            totalEmpWage += empWage;
+            WriteLine("Emp Wage: " + empWage);
         }
-        empWage = empHrs * EMP_RATE_PER_HOUR;
-        WriteLine("Emp Wage: " + empWage);
+        WriteLine("Total Emp Wage : " + totalEmpWage);
     }
 }
